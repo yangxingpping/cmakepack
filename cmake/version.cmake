@@ -16,7 +16,7 @@ set(EXEOUT "")
 
 
 execute_process(
-    COMMAND git ls-remote --get-url
+    COMMAND git config --get remote.origin.url
     WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
     OUTPUT_VARIABLE _test_ver
     ERROR_QUIET
