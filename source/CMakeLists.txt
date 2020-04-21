@@ -26,19 +26,6 @@ add_custom_target(versionFileTouchForRebuild
 # Libraries dependencies
 find_package (Threads REQUIRED) #threading
 
-#------------------------------------------------------------------------------
-# By using macro to add common dependencies you can avoid repetition when you have
-# multiple binaries.
-# Use with `addCommonDependencies(exampleApp)`
-# macro(addCommonDependencies TARGET)
-#     add_dependencies(${TARGET} versionFileTouchForRebuild) # We want precise time of build in version
-#     target_include_directories(${TARGET} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-#     target_link_libraries (${TARGET} PRIVATE Threads::Threads)
-#     target_compile_definitions(${TARGET} PRIVATE -DSOME_DEFINE)
-# endmacro()
-
-#-------------------------------------------------------------------------------
-# exampleApp executable setup
 
 set(ICON_RESOURCE "")
 if(WIN32) #windows icon resource file, provided from /packaging directory
@@ -69,58 +56,7 @@ install(TARGETS exampleApp
     BUNDLE DESTINATION "."
     RUNTIME DESTINATION bin)
 
-# Using macro from cmake/cleanCpppExtensions.cpp included on the top
-# Provides exampleApp-run and exampleApp-dbg
 addRunAndDebugTargets(exampleApp)
-
-# short convenience target from cmake/cleanCpppExtensions.cpp
-add_custom_target(run DEPENDS exampleApp-run)
-
-# Manually specified convenience target for running the binary, we use macro
-# add_custom_target(exampleApp-run
-#     WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin
-#     USES_TERMINAL
-#     COMMAND ./exampleApp
-#     DEPENDS Install_)
-
-# And this would add -DBAR_ENABLE_FEATURE or equivalent to build command
-# target_compile_definitions(exampleApp PRIVATE BAR_ENABLE_FEATURE)
-
-# Add compile time definition based on option
-# option(OPTION_NAME "description for end user" OFF)
-# if(OPTION_NAME)
-#     # you can do anything here, eg. setup new optional executable
-#     target_compile_definitions(exampleApp PRIVATE DEFINE_NAME)
-# endif()
-
-# Add building new shared library
-# add_library(exampleLibrary SHARED ${LIBRARY_SOURCES})
-# target_link_libraries (exampleLibrary PRIVATE ${CMAKE_THREAD_LIBS_INIT})
-# set_property(TARGET exampleLibrary PROPERTY CXX_STANDARD 14) # we want C++14
-
-# How to include and link OpenGL and GLUT libraries
-# find_package(OpenGL REQUIRED)
-# find_package(GLUT REQUIRED)
-# target_include_directories(exampleApp PRIVATE SYSTEM ${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS} )
-# target_link_libraries(exampleApp PRIVATE ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
-
-# How to use some other standard packages
-# find_package(ZLIB REQUIRED) 
-# target_link_libraries (exampleApp PRIVATE ZLIB::ZLIB)
-# 
-# find_package(OpenSSL REQUIRED)
-# target_link_libraries (exampleApp PRIVATE OpenSSL::SSL OpenSSL::Crypto)
-#
-# find_package(CURL REQUIRED)
-# target_link_libraries (exampleApp PRIVATE CURL::libcurl)
-
-#------------------------------------------------------------------------------
-# Unit tests
-
-add_subdirectory(unittest)
-
-#-------------------------------------------------------------------------------
-# Copy MINGW needed libraries for building on windows
 
 if(MINGW)
     message(STATUS "MinGW detected")
@@ -140,11 +76,6 @@ if(MINGW)
     )
 endif(MINGW)
 
-
-#------------------------------------------------------------------------------
-# Other MISC targets
-
-# Adds misc targets: format, cppcheck, tidy, see cmake/cleanCppExtensions.cmake
 addMiscTargets()
 
 
