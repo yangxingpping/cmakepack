@@ -41,12 +41,18 @@ if(GIT_WORK_COPY)
 elseif(SVN_WORK_COPY)
     set(BUILD_REVISION_CONTROLLER "SVN")
 
+    set(paramEgrep "[0-9]+")
     execute_process(
-        COMMAND svn info -r 'HEAD' | grep Revision | egrep -o "[0-9]+"
+        COMMAND svn info -r HEAD
+        COMMAND grep Revision 
+        COMMAND egrep -o "${paramEgrep}"
         WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
-        OUTPUT_VARIABLE PROJECT_VERSION_PATCH
+        RESULT_VARIABLE EXEOUT
+        ERROR_VARIABLE BUILDE
+        OUTPUT_VARIABLE BUILD_REVISION
         ERROR_QUIET
         OUTPUT_STRIP_TRAILING_WHITESPACE
+    )OUTPUT_STRIP_TRAILING_WHITESPACE
     )
 endif()
 
