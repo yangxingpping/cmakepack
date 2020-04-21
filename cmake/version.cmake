@@ -39,9 +39,10 @@ endif()
 
 if(GIT_WORK_COPY)
     set(BUILD_REVISION_CONTROLLER "GIT")
-
+    set(gitparams "--short")
+    message("begin execute git ")
     execute_process(
-        COMMAND git rev-parse --short HEAD
+        COMMAND git rev-parse ${gitparams} HEAD
         WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
         RESULT_VARIABLE EXEOUT
         ERROR_VARIABLE BUILDE
@@ -49,6 +50,7 @@ if(GIT_WORK_COPY)
         ERROR_QUIET
         OUTPUT_STRIP_TRAILING_WHITESPACE
     )
+    message("end execute git")
 elseif(SVN_WORK_COPY)
     set(BUILD_REVISION_CONTROLLER "SVN")
     set(paramEgrep "[0-9]+")
