@@ -44,7 +44,7 @@ Version::Version(long long version)
 //-----------------------------------------------------------------------------------
 long long Version::asNumber() const
 {
-    return (major * 10000 * 10000) + (minor * 10000) + patch;
+    return (major * 10000 * 10000) + (minor * 10000);// + patch;
 }
 //-----------------------------------------------------------------------------------
 std::string Version::asShortStr() const
