@@ -3,12 +3,12 @@
 # CPACK
 include(InstallRequiredSystemLibraries)
 
-set(CPACK_PACKAGE_VENDOR "kracejic")
+set(CPACK_PACKAGE_VENDOR "amethystum")
 set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
-set(CPACK_PACKAGE_CONTACT "kracejic <kracejic@gmail.com>")
-set(HOMEPAGE "https://github.com/kracejic/cleanCppProject")
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY
-    "Clean cpp project. This is simple cpp example project build with CMake.")
+set(CPACK_PACKAGE_CONTACT "support@amethystum.com")
+set(HOMEPAGE "https://amethystum.com")
+set(CPACK_PACKAGE_GROUP "amethystum")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "pack summary desc")
 set(CPACK_PACKAGE_DESCRIPTION_FILE "${PROJECT_SOURCE_DIR}/readme.md")
 set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/license.md")
 set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
@@ -91,6 +91,7 @@ else()
         message(STATUS "   + RPM                                  YES ")
         set(CPACK_GENERATOR "${CPACK_GENERATOR};RPM")
         set(CPACK_RPM_PACKAGE_LICENSE "MIT")
+        set(CPACK_RPM_PACKAGE_GROUP ${CPACK_PACKAGE_GROUP})
         # set(CPACK_RPM_PACKAGE_REQUIRES "gtkmm30")
         # exclude folders which clash with default ones
         set(CPACK_RPM_EXCLUDE_FROM_AUTO_FILELIST
