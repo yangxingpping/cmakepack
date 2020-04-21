@@ -60,8 +60,6 @@ endif()
 #------------------------------------------------------------------------------
 # Included CMakeLists.txt
 
-# External resources/repositories are downloaded here
-add_subdirectory(external)
 
 # Documentation build
 add_subdirectory(doc)
@@ -69,9 +67,7 @@ add_subdirectory(doc)
 # Images, databases and other data which needs to be installed for project
 add_subdirectory(data)
 
-# Testing
-enable_testing()
-add_subdirectory(test)
+
 
 # Source code
 add_subdirectory(source)
