@@ -61,9 +61,6 @@ endif()
 # Included CMakeLists.txt
 
 
-# Documentation build
-add_subdirectory(doc)
-
 # Images, databases and other data which needs to be installed for project
 add_subdirectory(data)
 
