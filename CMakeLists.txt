@@ -4,9 +4,9 @@ cmake_minimum_required (VERSION 3.6)
 
 # Project setup, versioning stuff here, change when changing the version
 # Note: keep the project name lower case only for easy linux packaging support
-project (cleancppproject VERSION 0.3.5)
+project (projectname VERSION 1.1.1)
 
-include(${PROJECT_SOURCE_DIR}/version.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/version.cmake)
 
 set(VERSION_TYPE "beta" CACHE STRING "version type" FORCE)
 site_name(VERSION_HOST) # read hostname to VERSION_HOST
