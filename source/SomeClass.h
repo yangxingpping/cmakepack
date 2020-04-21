@@ -50,7 +50,7 @@ class Data
  */
 class SomeClass : public BaseClass
 {
-    int mVal {0}; ///< Stores the value
+    int mVal ; ///< Stores the value
     std::vector<Data> mData;
     std::vector<std::string> mStrings;
 
