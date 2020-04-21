@@ -52,8 +52,9 @@ std::string Version::asShortStr() const
     std::string version;//= std::to_string(major) + "." + std::to_string(minor) + "." + std::to_string(patch) + " " + type;
     char chTemp[24];
     memset(chTemp,0,sizeof(chTemp));
-    sprintf(chTemp, "%d%d%d", major, minor, patch);
+    sprintf(chTemp, "%d%d", major, minor);
     version = chTemp;
+    version += patch;
     version += " " + type;
     return version;
 }
