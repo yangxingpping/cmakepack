@@ -21,7 +21,7 @@ struct Version
 
     int major ;
     int minor ;
-    int patch ;
+    std::string patch ;
 
     /// Type of build
     std::string type ;
