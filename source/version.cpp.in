@@ -1,5 +1,9 @@
 #include "version.h"
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
 namespace Version {
 
 Version makeCurrentVersion()
@@ -45,7 +49,12 @@ long long Version::asNumber() const
 //-----------------------------------------------------------------------------------
 std::string Version::asShortStr() const
 {
-    std::string version = std::to_string(major) + "." + std::to_string(minor) + "." + std::to_string(patch) + " " + type;
+    std::string version;//= std::to_string(major) + "." + std::to_string(minor) + "." + std::to_string(patch) + " " + type;
+    char chTemp[24];
+    memset(chTemp,0,sizeof(chTemp));
+    sprintf(chTemp, "%d%d%d", major, minor, patch);
+    version = chTemp;
+    version += " " + type;
     return version;
 }
 //-----------------------------------------------------------------------------------

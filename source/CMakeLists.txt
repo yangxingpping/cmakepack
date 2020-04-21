@@ -8,7 +8,7 @@ include(sanitizers)
 if(MSVC)
     add_compile_options(/std:c++14 /W3 /WX )
 else()
-    add_compile_options(-std=c++14 -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wunused -pedantic)
+    add_compile_options(-std=c++0x -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wunused -pedantic)
 endif()
 
 # configure version.cpp.in with selected version
