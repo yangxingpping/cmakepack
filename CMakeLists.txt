@@ -1,10 +1,22 @@
 cmake_minimum_required (VERSION 3.6)
 
+project (projectname VERSION 1.1.1)
+
+include_directories(${PROJECT_SOURCE_DIR}/)
+
+
+set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/libs)
+
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR})
+
+IF(CMAKE_SYSTEM_NAME MATCHES "Windows")
+ELSEIF(CMAKE_SYSTEM_NAME MATCHES "Linux")
+link_directories(${PROJECT_BINARY_DIR}/libs /usr.local/libs /usr/lib /usr/local/lib)
+ENDIF(CMAKE_SYSTEM_NAME MATCHES "Windows")
 
 
 # Project setup, versioning stuff here, change when changing the version
 # Note: keep the project name lower case only for easy linux packaging support
-project (projectname VERSION 1.1.1)
 
 include(${PROJECT_SOURCE_DIR}/cmake/version.cmake)
 
